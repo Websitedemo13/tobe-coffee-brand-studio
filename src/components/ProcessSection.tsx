@@ -1,56 +1,90 @@
-import { Leaf, Flame, Package } from "lucide-react";
+import storyBrewing from "@/assets/story-brewing.jpg";
+import productBeans from "@/assets/product-beans.jpg";
+import productCan from "@/assets/product-can.jpg";
 
-const steps = [
+const processSteps = [
   {
-    icon: Leaf,
-    title: "Tuyển chọn hạt",
-    description: "Hạt cà phê Arabica & Robusta tốt nhất từ Đắk Lắk, Lâm Đồng và các vùng cao nguyên Việt Nam.",
+    image: storyBrewing,
+    title: "Chuỗi cung ứng toàn diện từ nông trại",
+    description:
+      "Cà phê canh tác theo hướng hữu cơ, vườn cà phê dưới tán rừng che mát, chắn gió, có thảm nền thực vật. Vào vụ thu hoạch, quả cà phê chỉ được thu hái khi đạt độ chín cao.",
   },
   {
-    icon: Flame,
-    title: "Rang xay",
-    description: "Rang thủ công theo profile riêng biệt, giữ trọn hương thơm và vị đậm đà đặc trưng.",
+    image: productBeans,
+    title: "Cà phê nhân xanh chất lượng cao",
+    description:
+      "Cà phê tươi tách sạch cành lá, tạp chất, được lên men kỹ lưỡng và phơi khô chậm. Quy trình chế biến ướt đảm bảo giữ trọn hương vị tự nhiên của hạt.",
   },
   {
-    icon: Package,
-    title: "Đóng gói",
-    description: "Công nghệ đóng gói hiện đại, bảo quản nguyên vẹn chất lượng đến tay người thưởng thức.",
+    image: productCan,
+    title: "Chế biến nâng cao",
+    description:
+      "Từ cà phê nhân xanh, TOBE tiếp tục chế biến sâu để tạo ra các sản phẩm hảo hạng. Hệ thống rang xay hiện đại giúp tạo ra sản phẩm giữ trọn hương vị nguyên thuỷ mà không sử dụng hương liệu hoá học.",
   },
+];
+
+const stats = [
+  { value: "86+", label: "SCA Score" },
+  { value: "500", label: "Nhà máy (m²)" },
+  { value: "3", label: "Nông trại" },
+  { value: "10+", label: "Nông hộ" },
 ];
 
 const ProcessSection = () => {
   return (
     <section id="process" className="section-padding">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="text-center mb-16 fade-in-up">
-          <span className="text-primary font-heading font-semibold text-sm tracking-[0.2em] uppercase mb-4 block">
-            Quy trình
-          </span>
-          <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-foreground">
-            Từ nông trại đến tách cà phê
-          </h2>
+        {/* Zigzag blocks */}
+        <div className="space-y-24 lg:space-y-32">
+          {processSteps.map((step, index) => {
+            const isReversed = index % 2 !== 0;
+            return (
+              <div
+                key={step.title}
+                className={`fade-in-up grid lg:grid-cols-2 gap-12 lg:gap-20 items-center ${
+                  isReversed ? "lg:direction-rtl" : ""
+                }`}
+              >
+                {/* Image */}
+                <div className={`overflow-hidden rounded ${isReversed ? "lg:order-2" : ""}`}>
+                  <img
+                    src={step.image}
+                    alt={step.title}
+                    className="w-full h-[400px] lg:h-[500px] object-cover hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
+                    width={960}
+                    height={1080}
+                  />
+                </div>
+
+                {/* Content */}
+                <div className={isReversed ? "lg:order-1" : ""}>
+                  <h2 className="font-heading font-bold text-2xl md:text-3xl lg:text-4xl text-primary leading-tight mb-6">
+                    {step.title}
+                  </h2>
+                  <p className="text-muted-foreground font-light leading-relaxed text-lg">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 lg:gap-16 relative">
-          {/* Connecting line */}
-          <div className="hidden md:block absolute top-16 left-[20%] right-[20%] h-px bg-border" />
-
-          {steps.map((step, index) => (
-            <div key={step.title} className="fade-in-up text-center relative" style={{ transitionDelay: `${index * 150}ms` }}>
-              <div className="w-32 h-32 rounded-full bg-accent flex items-center justify-center mx-auto mb-8 relative z-10">
-                <step.icon size={40} className="text-primary" strokeWidth={1.5} />
+        {/* Stats */}
+        <div className="mt-24 lg:mt-32 fade-in-up">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-b border-border py-12">
+            {stats.map((stat) => (
+              <div key={stat.label} className="text-center">
+                <span className="font-heading font-black text-4xl md:text-5xl text-primary block mb-2">
+                  {stat.value}
+                </span>
+                <span className="text-muted-foreground font-light text-sm tracking-wide">
+                  {stat.label}
+                </span>
               </div>
-              <span className="text-primary font-heading font-bold text-sm mb-2 block">
-                0{index + 1}
-              </span>
-              <h3 className="font-heading font-bold text-xl text-foreground mb-3">
-                {step.title}
-              </h3>
-              <p className="text-muted-foreground font-light leading-relaxed max-w-xs mx-auto">
-                {step.description}
-              </p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
