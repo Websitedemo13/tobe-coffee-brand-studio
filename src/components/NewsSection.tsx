@@ -1,0 +1,76 @@
+import news1 from "@/assets/news-1.jpg";
+import news2 from "@/assets/news-2.jpg";
+import news3 from "@/assets/news-3.jpg";
+
+const articles = [
+  {
+    image: news1,
+    date: "15 Tháng 3, 2026",
+    title: "Hành trình khám phá vùng cà phê Đắk Lắk cùng TOBE",
+    excerpt: "Theo chân đội ngũ TOBE đến tận vườn cà phê để tuyển chọn những hạt tốt nhất...",
+  },
+  {
+    image: news2,
+    date: "08 Tháng 3, 2026",
+    title: "Nghệ thuật pha cà phê: Bí quyết từ chuyên gia TOBE",
+    excerpt: "Chia sẻ những bí quyết pha chế đơn giản để có tách cà phê hoàn hảo tại nhà...",
+  },
+  {
+    image: news3,
+    date: "01 Tháng 3, 2026",
+    title: "TOBE ra mắt dòng sản phẩm Premium mới",
+    excerpt: "Dòng cà phê cao cấp mới với hương vị độc đáo, đánh dấu bước phát triển mới...",
+  },
+];
+
+const NewsSection = () => {
+  return (
+    <section id="news" className="section-padding bg-secondary">
+      <div className="container mx-auto px-4 lg:px-8">
+        <div className="text-center mb-16 fade-in-up">
+          <span className="text-primary font-heading font-semibold text-sm tracking-[0.2em] uppercase mb-4 block">
+            Tin tức
+          </span>
+          <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-foreground">
+            Câu chuyện từ TOBE
+          </h2>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {articles.map((article, index) => (
+            <article
+              key={article.title}
+              className="fade-in-up group cursor-pointer"
+              style={{ transitionDelay: `${index * 100}ms` }}
+            >
+              <div className="overflow-hidden rounded mb-5">
+                <img
+                  src={article.image}
+                  alt={article.title}
+                  className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                  width={800}
+                  height={600}
+                />
+              </div>
+              <span className="text-muted-foreground text-xs font-heading tracking-wider uppercase">
+                {article.date}
+              </span>
+              <h3 className="font-heading font-bold text-lg text-foreground mt-2 mb-3 group-hover:text-primary transition-colors">
+                {article.title}
+              </h3>
+              <p className="text-muted-foreground font-light text-sm leading-relaxed mb-3">
+                {article.excerpt}
+              </p>
+              <span className="text-primary font-heading font-semibold text-sm tracking-wide hover:underline underline-offset-4">
+                Đọc thêm →
+              </span>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default NewsSection;
