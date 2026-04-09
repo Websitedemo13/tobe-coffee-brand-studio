@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div>
-            <img src={logoTobe} alt="TOBE Coffee" className="h-12 w-auto brightness-0 invert mb-6" />
+            <img src={logoTobe} alt="TOBE Coffee" className="h-20 w-20 brightness-0 invert mb-6" />
             <p className="text-primary-foreground/70 font-light text-sm leading-relaxed">
               Brew Bold. Be TOBE.<br />
               Cà phê Việt Nam chất lượng cao cho người trẻ hiện đại.
